@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+};
+</script>
+<title>Adam and Will's School Sites</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.glitch.com/0db35972-6d4a-40e8-9154-6f609c5688f7%2Fapple-touch-icon.png?v=1599587249627">
+<link rel="icon" type="image/ico" href="https://cdn.glitch.com/0db35972-6d4a-40e8-9154-6f609c5688f7%2Ffavicon.ico?v=1599587222001" sizes="32x32">
+<link rel="icon" type="image/png" href="/https://cdn.glitch.com/0db35972-6d4a-40e8-9154-6f609c5688f7%2Ffavicon-16x16.png?v=1599587249560" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #c72f24;
+  color: white;
+}
+
+/* Increase the font size of the h1 element */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+    }
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width:100%;
+  }
+}
+     /* A link that has not been visited */
+a.headbar:link {
+    color: white;
+}
+/* A link that has been visited */
+a.headbar:visited {
+    color: white;
+}
+/* A link that is hovered on */
+a.headbar:hover {
+    color: #e6e3e3;
+  transition: background 0.5s ease-in-out;
+}
+/* A link that is selected */
+a.headbar:active {
+    color: #e6e3e3;
+}
+    /* Don't underline links in header. */
+a.headbar {
+    text-decoration: none;
+}
+</style>
+</head>
+<body>
+  <div w3-include-html="/scripts/header.html"></div> 
+  <script>
+includeHTML();
+</script>
+  <div class="row">
+  <div class="side">
+  <div w3-include-html="/scripts/sidebar-universal.html"></div> 
+  <script>
+includeHTML();
+</script>
+    <h3>
+    <a href="https://instruction.gwinnett.k12.ga.us/d2l/home/2580953">Mr. Young Eclass</a>
+  </h3>
+  </div>
+  <div class="main">
+      <h2>
+    Currently Studying:
+  </h2>
+  <h3>
+    Europe
+    </h3>
+    <p>
+    World Religions
+  </p>
+  <h2>
+    Important dates(Embedded calendar)
+  </h2>
+  <iframe src="https://calendar.google.com/calendar/embed?src=akriiorscoaj5ld0mr8e9u8gdifspo9t%40import.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
+
+<div class="footer">
+  <h2></h2>
+  <h4>
+    ©2020 Adam Tschan. All rights reserved.
+  </h4>
+</div>
+  </body>
+</html>
